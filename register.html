@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inscription</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="card">
+<h2>Inscription</h2>
+
+<input type="text" id="nom" placeholder="Nom complet">
+
+<input type="email" id="email" placeholder="Votre e-mail">
+
+<input type="password" id="password" placeholder="Votre mot de passe">
+
+
+<input type="text" id="classe" placeholder="Classe (élève) ou Matière (enseignant)">
+<select id="role">
+    <option value="Eleve">Élève</option>
+    <option value="Enseignant">Enseignant</option>
+</select>
+<button onclick="inscription()">
+S'inscrire
+</button>
+
+<p>
+<a href="login.html">Retour à la connexion</a>
+</p>
+</div>
+</div>
+
+<script type="module" src="auth.js"></script>
+</body>
+</html>

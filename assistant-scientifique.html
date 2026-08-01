@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Assistant scientifique</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🤖 Assistant scientifique</h1>
+
+<p>Pose tes questions scientifiques</p>
+
+</header>
+
+
+<div class="container">
+
+<div class="card">
+
+<h2>💬 Discussion</h2>
+
+<button onclick="nouvelleDiscussion()">
+➕ Nouvelle discussion
+</button>
+
+<br><br>
+<div id="conversation">
+
+<p>Bonjour 👋 Pose ta question scientifique.</p>
+
+</div>
+
+
+<textarea 
+id="question"
+placeholder="Écris ton problème scientifique ici...">
+</textarea>
+
+
+<br><br>
+
+
+<input 
+type="file"
+id="imageQuestion"
+accept="image/*">
+
+
+<br><br>
+
+
+<button onclick="envoyerQuestion()">
+
+📤 Envoyer
+
+</button>
+
+
+</div>
+
+</div>
+
+
+<script type="module" src="assistant.js"></script>
+
+</body>
+</html>

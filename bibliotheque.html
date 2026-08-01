@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bibliothèque</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>📚 Bibliothèque numérique</h1>
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Ajouter un document</h2>
+
+<label><strong>🏫 Salle</strong></label>
+
+<select id="sallePDF">
+    <option value="">Choisir une salle</option>
+    <option>6e A</option>
+    <option>4e</option>
+    <option>3e</option>
+    <option>Seconde C</option>
+    <option>Première A</option>
+    <option>Première C</option>
+    <option>Première D</option>
+    <option>Terminale A</option>
+    <option>Terminale C</option>
+    <option>Terminale D</option>
+</select>
+
+<br><br>
+
+<label><strong>📚 Matière</strong></label>
+
+<select id="matierePDF">
+    <option value="">Choisir une matière</option>
+    <option>Mathématiques</option>
+    <option>Physique</option>
+    <option>Chimie</option>
+    <option>SVT</option>
+    <option>Français</option>
+    <option>Anglais</option>
+    <option>Histoire-Géographie</option>
+    <option>Informatique</option>
+</select>
+
+<br><br>
+
+<input
+type="text"
+id="titrePDF"
+placeholder="Titre du document">
+
+<input
+type="text"
+id="lienPDF"
+placeholder="Collez le lien du PDF">
+
+<button onclick="publierPDF()">
+📄 Publier le document
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>Documents disponibles</h2>
+<input
+type="text"
+id="recherchePDF"
+placeholder="🔍 Rechercher un document..."
+onkeyup="rechercherPDF()">
+
+<br><br>
+<div id="listePDF">
+<p>Aucun document.</p>
+</div>
+
+</div>
+
+</div>
+
+<script type="module" src="bibliotheque.js"></script>
+</script>
+<script type="module" src="protection.js"></script>
+</body>
+</html>

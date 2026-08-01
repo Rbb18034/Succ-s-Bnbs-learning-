@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cours des élèves</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>📚 Cours disponibles</h1>
+<p>Succès BNBS Learning</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Mes cours</h2>
+<input
+type="text"
+id="rechercheCours"
+placeholder="🔍 Rechercher un cours..."
+onkeyup="rechercherCours()">
+
+<br><br>
+<div id="listeCours">
+<p>Aucun cours disponible.</p>
+</div>
+
+</div>
+
+</div>
+
+<script type="module" src="app-eleve.js"></script>
+</body>
+</html>

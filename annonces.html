@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Annonces</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>📢 Annonces</h1>
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Nouvelle annonce</h2>
+
+<label>🏫 Salle</label>
+
+<select id="salleAnnonce">
+<option value="">Choisir une salle</option>
+<option>6e A</option>
+<option>4e</option>
+<option>3e</option>
+<option>Seconde C</option>
+<option>Première A</option>
+<option>Première C</option>
+<option>Première D</option>
+<option>Terminale A</option>
+<option>Terminale C</option>
+<option>Terminale D</option>
+</select>
+
+<br><br>
+
+<label>📚 Matière</label>
+
+<select id="matiereAnnonce">
+<option value="">Choisir une matière</option>
+<option>Mathématiques</option>
+<option>Physique</option>
+<option>Chimie</option>
+<option>SVT</option>
+<option>Français</option>
+<option>Anglais</option>
+<option>Histoire-Géographie</option>
+<option>Informatique</option>
+</select>
+
+<br><br>
+
+<input
+type="text"
+id="titreAnnonce"
+placeholder="Titre">
+
+<textarea
+id="messageAnnonce"
+placeholder="Votre annonce..."></textarea>
+
+<button onclick="publierAnnonce()">
+📢 Publier
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>Annonces publiées</h2>
+
+<div id="listeAnnonces">
+<p>Aucune annonce.</p>
+</div>
+
+</div>
+
+</div>
+
+<script type="module" src="annonces.js"></script>
+
+</body>
+</html>

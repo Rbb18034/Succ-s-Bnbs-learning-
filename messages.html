@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Messagerie</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>💬 Messagerie</h1>
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Nouveau message</h2>
+
+<input type="text" id="titreMessage" placeholder="Titre">
+
+<textarea id="contenuMessage" placeholder="Votre message"></textarea>
+
+<button onclick="publierMessage()">
+Envoyer
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>Messages</h2>
+
+<div id="listeMessages">
+<p>Aucun message.</p>
+</div>
+
+</div>
+
+</div>
+
+<script type="module" src="messages.js"
+<script type="module" src="protection.js"></script>
+  ></script>
+</script>
+
+</body>
+</html>

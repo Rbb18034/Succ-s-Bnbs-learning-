@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Espace Enseignant</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+    <h1>👨‍🏫 Espace Enseignant</h1>
+    <p>Succès BNBS Learning</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>📊 Tableau de bord</h2>
+
+        <p>👨‍🎓 Élèves : <strong id="nbEleves">0</strong></p>
+
+        <p>📚 Cours : <strong id="nbCours">0</strong></p>
+
+        <p>🎥 Vidéos : <strong id="nbVideos">0</strong></p>
+
+        <p>📄 Documents : <strong id="nbPDF">0</strong></p>
+
+        <p>📝 Quiz : <strong id="nbQuiz">0</strong></p>
+
+        <p>💬 Messages : <strong id="nbMessages">0</strong></p>
+
+    </div>
+
+    <div class="card">
+
+        <h2 id="bienvenue">Bienvenue !</h2>
+
+        <p>Choisissez une action :</p>
+<div class="container">
+
+<div class="card">
+
+<h2>📂 Gestion de la plateforme</h2>
+
+<button onclick="window.location.href='salles.html'">
+🏫 Gérer les salles
+</button>
+
+<br><br>
+
+<button onclick="window.location.href='cours.html'">
+📚 Gérer les cours
+</button>
+
+<br><br>
+
+<button onclick="window.location.href='bibliotheque.html'">
+📄 Bibliothèque
+</button>
+
+<br><br>
+
+<button onclick="window.location.href='admin-video.html'">
+🎥 Gérer les vidéos
+</button>
+
+<br><br>
+
+<button onclick="window.location.href='quiz.html'">
+📝 Gérer les quiz
+</button>
+
+<br><br>
+
+<button onclick="window.location.href='resultats.html'">
+📊 Résultats des élèves
+</button>
+
+<br><br>
+
+<button onclick="window.location.href='messages.html'">
+💬 Messagerie
+</button>
+
+<br><br>
+
+<button onclick="window.location.href='profil.html'">
+👤 Mon profil
+</button>
+
+<br><br>
+
+<button onclick="window.location.href='apropos.html'">
+ℹ️ À propos
+</button>
+
+<br><br>
+
+<button onclick="deconnexion()">
+🚪 Déconnexion
+</button>
+<button onclick="window.location.href='annonces.html'">
+📢 Annonces
+</button>
+<button onclick="window.location.href='assistant-scientifique.html'">
+🤖 Assistant scientifique
+</button>
+
+</div>
+<button onclick="window.location.href='utilisateurs.html'">
+👥 Utilisateurs
+</button>
+</div>
+
+<script type="module" src="app.js"></script>
+<script type="module" src="protection.js"></script>
+<script type="module" src="auth.js"></script>
+
+<script type="module" src="protection.js"></script>
+<script type="module" src="auth.js"></script>
+
+</div>
+<div class="bottom-nav">
+
+<a href="admin.html">
+<span>🏠</span>
+Accueil
+</a>
+
+<a href="cours.html">
+<span>📚</span>
+Cours
+</a>
+
+<a href="bibliotheque.html">
+<span>📄</span>
+PDF
+</a>
+
+<a href="videos.html">
+<span>🎥</span>
+Vidéos
+</a>
+
+<a href="annonces.html">
+<span>📢</span>
+Annonces
+</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ajouter une vidéo</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+<h1>🎥 Publier une vidéo</h1>
+</header>
+
+
+<div class="container">
+
+<div class="card">
+
+<<h2>Nouvelle vidéo</h2>
+
+<label><strong>🏫 Salle</strong></label>
+
+<select id="salleVideo">
+    <option value="">Choisir une salle</option>
+    <option>6e A</option>
+    <option>4e</option>
+    <option>3e</option>
+    <option>Seconde C</option>
+    <option>Première A</option>
+    <option>Première C</option>
+    <option>Première D</option>
+    <option>Terminale A</option>
+    <option>Terminale C</option>
+    <option>Terminale D</option>
+</select>
+
+<br><br>
+
+<label><strong>📚 Matière</strong></label>
+
+<select id="matiereVideo">
+    <option value="">Choisir une matière</option>
+    <option>Mathématiques</option>
+    <option>Physique</option>
+    <option>Chimie</option>
+    <option>SVT</option>
+    <option>Français</option>
+    <option>Anglais</option>
+    <option>Histoire-Géographie</option>
+    <option>Informatique</option>
+</select>
+
+<br><br>
+
+<input type="text"
+id="titreVideo"
+placeholder="Titre de la vidéo">
+
+<br><br>
+
+<input type="file"
+id="fichierVideo"
+accept="video/*">
+
+<br><br>
+
+<button onclick="publierVideo()">
+🎥 Publier la vidéo
+</button>
+
+</div>
+
+</div>
+<div class="container">
+
+<div class="card">
+
+<h2>📹 Vidéos publiées</h2>
+
+<div id="listeVideos">
+
+<p>Aucune vidéo disponible.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<script type="module" src="app.js"></script>
+
+</body>
+</html>

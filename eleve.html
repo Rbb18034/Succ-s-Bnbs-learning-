@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Espace Élève</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<header>
+    <h1>👨‍🎓 Espace Élève</h1>
+    <p>Succès BNBS Learning</p>
+</header>
+<div class="container">
+
+<div class="card">
+
+<h2 id="bienvenue">
+Bonjour 👋
+</h2>
+<p id="messageEleve">
+Heureux de te revoir sur Succès BNBS Learning.
+</p>
+<div class="dashboard">
+
+    <div class="stat-card">
+        📚
+        <h3 id="nombreCours">0</h3>
+        <p>Cours</p>
+    </div>
+
+    <div class="stat-card">
+        📄
+        <h3 id="nombrePDF">0</h3>
+        <p>Documents</p>
+    </div>
+
+    <div class="stat-card">
+        🎥
+        <h3 id="nombreVideos">0</h3>
+        <p>Vidéos</p>
+    </div>
+
+    <div class="stat-card">
+        📝
+        <h3 id="nombreQuiz">0</h3>
+        <p>Quiz</p>
+    </div>
+
+</div>
+</div>
+
+</div>
+<div class="container">
+
+<div class="card">
+
+<h2>Bienvenue</h2>
+
+<p>Choisissez ce que vous souhaitez consulter :</p>
+<button onclick="ouvrirRessource('cours')">
+📚 Voir les cours
+</button>
+
+<br><br>
+
+<button onclick="ouvrirRessource('pdf')">
+📄 Bibliothèque
+</button>
+
+<br><br>
+
+<button onclick="ouvrirRessource('video')">
+🎥 Vidéos
+</button>
+
+<br><br>
+
+<button onclick="ouvrirRessource('quiz')">
+📝 Quiz
+</button>
+
+<br><br>
+
+<button onclick="window.location.href='profil.html'">
+👤 Mon profil
+</button>
+</div>
+<a href="messages-eleve.html">
+    📢 Messages
+</a>
+<button onclick="ouvrirRessource('annonce')">
+📢 Annonces
+</button>
+<button onclick="window.location.href='assistant-scientifique.html'">
+🤖 Assistant scientifique
+</button>
+</div>
+
+<script type="module" src="app-eleve.js"></script>
+<script type="module" src="auth.js"></script>
+<script>
+function ouvrirRessource(type){
+    localStorage.setItem("ressource", type);
+    window.location.href = "salles.html";
+}
+</script>
+<div class="bottom-nav">
+
+<a href="eleve.html">
+<span>🏠</span>
+Accueil
+</a>
+
+<a href="salles.html">
+<span>📚</span>
+Cours
+</a>
+
+<a href="bibliotheque-eleve.html">
+<span>📄</span>
+PDF
+</a>
+
+<a href="videos-eleve.html">
+<span>🎥</span>
+Vidéos
+</a>
+
+<a href="profil.html">
+<span>👤</span>
+Profil
+</a>
+
+</div>
+</body>
+</html>

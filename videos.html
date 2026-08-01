@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vidéos</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>🎥 Gestion des vidéos</h1>
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Ajouter une vidéo</h2>
+
+<input type="text" id="titreVideo" placeholder="Titre de la vidéo">
+
+<input type="file" id="fichierVideo" accept="video/*">
+
+<button onclick="publierVideo()">
+Publier la vidéo
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>Vidéos disponibles</h2>
+
+<div id="listeVideos">
+<p>Aucune vidéo disponible.</p>
+</div>
+
+</div>
+
+</div>
+
+<script type="module" src="app.js"></script>
+<script type="module" src="protection.js"></script>
+</body>
+</html>
