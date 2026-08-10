@@ -120,7 +120,28 @@
 👥 Utilisateurs
 </button>
 </div>
+<button id="boutonGestionUtilisateurs"
+onclick="window.location.href='gestion-utilisateurs.html'">
 
+👥 Gestion utilisateurs
+
+</button>
+<button onclick="window.location.href='gestion-lycees.html'">
+🏫 Gestion des lycées
+</button>
+</div>
+<button onclick="window.location.href='admin-annonces.html'">
+📢 Annonces sponsorisées
+</button>
+</div>
+<button onclick="window.location.href='gestion-lycees.html'">
+🏫 Gestion des lycées
+</button>
+</div>
+<button class="btn-warning" onclick="window.location.href='annonces.html'">
+    📢 Gestion des annonces sponsorisées
+</button>
+</div>
 <script type="module" src="app.js"></script>
 <script type="module" src="protection.js"></script>
 <script type="module" src="auth.js"></script>
@@ -156,5 +177,37 @@ Vidéos
 Annonces
 </a>
 </div>
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+doc,
+getDoc
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+
+const email = localStorage.getItem("email");
+
+
+const utilisateur = await getDoc(
+doc(db,"utilisateurs",email)
+);
+
+
+if(utilisateur.exists()){
+
+const role = utilisateur.data().role;
+
+
+if(role !== "Admin"){
+
+document.getElementById("boutonGestionUtilisateurs").style.display="none";
+
+}
+
+}
+
+</script>
 </body>
 </html>

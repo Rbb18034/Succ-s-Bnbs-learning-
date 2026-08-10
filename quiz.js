@@ -6,117 +6,262 @@ import {
     getDocs,
     deleteDoc,
     doc,
+    getDoc,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-window.publierQuiz = async function(){
 
-    const question = document.getElementById("questionQuiz").value;
-    const bonneReponse = document.getElementById("bonneReponse").value;
-    const mauvaiseReponse = document.getElementById("mauvaiseReponse").value;
 
-    if(!question || !bonneReponse || !mauvaiseReponse){
+let monLyceeId = "";
+let monEmail = "";
 
-        alert("Veuillez remplir tous les champs.");
+
+// Récupérer les informations utilisateur
+
+async function recupererUtilisateur(){
+
+    const email = localStorage.getItem("email");
+
+    if(!email){
         return;
-
     }
 
-    try{
+    monEmail = email;
 
-        await addDoc(collection(db,"quiz"),{
+    const utilisateur = await getDoc(
+        doc(db,"utilisateurs",email)
+    );
 
-            question: question,
-            bonneReponse: bonneReponse,
-            mauvaiseReponse: mauvaiseReponse,
-            date: serverTimestamp()
+    if(utilisateur.exists()){
 
-        });
+        const data = utilisateur.data();
 
-        alert("✅ Quiz publié avec succès !");
+        monLyceeId = data.lyceeId || "";
 
-        document.getElementById("questionQuiz").value = "";
-        document.getElementById("bonneReponse").value = "";
-        document.getElementById("mauvaiseReponse").value = "";
-
-    }catch(error){
-
-        alert("Erreur : " + error.message);
-
-    }
-
-};
-async function afficherQuiz(){
-
-    const liste = document.getElementById("listeQuiz");
-
-    if(!liste) return;
-
-    liste.innerHTML = "<p>Chargement...</p>";
-
-    try{
-
-        const snapshot = await getDocs(collection(db,"quiz"));
-
-        if(snapshot.empty){
-
-            liste.innerHTML = "<p>Aucun quiz.</p>";
-            return;
-
-        }
-
-        let html = "";
-
-        snapshot.forEach((document)=>{
-
-            const quiz = document.data();
-
-            html += `
-            <div class="card">
-
-                <h3>${quiz.question}</h3>
-
-                <p>✅ Bonne réponse : ${quiz.bonneReponse}</p>
-
-                <p>❌ Mauvaise réponse : ${quiz.mauvaiseReponse}</p>
-
-                <button onclick="supprimerQuiz('${document.id}')">
-                    🗑️ Supprimer
-                </button>
-
-            </div>
-            `;
-
-        });
-
-        liste.innerHTML = html;
-
-    }catch(error){
-
-        liste.innerHTML = "Erreur : " + error.message;
+        console.log("Nom :", data.nom);
+        console.log("Lycée :", monLyceeId);
+        console.log("Rôle :", data.role);
 
     }
 
 }
 
-afficherQuiz();
-window.supprimerQuiz = async function(id){
+// Publier un quiz
 
-    if(!confirm("Voulez-vous supprimer ce quiz ?")){
+window.publierQuiz = async function(){
+
+
+    const salle =
+    document.getElementById("salleQuiz").value;
+
+
+    const matiere =
+    document.getElementById("matiereQuiz").value;
+
+
+    const question =
+    document.getElementById("questionQuiz").value.trim();
+
+
+    const bonneReponse =
+    document.getElementById("bonneReponse").value.trim();
+
+
+    const mauvaiseReponse =
+    document.getElementById("mauvaiseReponse").value.trim();
+
+
+    const visibilite =
+    document.getElementById("visibiliteQuiz").value;
+
+    if(
+        !salle ||
+        !matiere ||
+        !question ||
+        !bonneReponse ||
+        !mauvaiseReponse
+    ){
+
+        alert("Veuillez remplir tous les champs.");
+
         return;
+
+    }
+
+    if(visibilite === "lycee" && !monLyceeId){
+
+        alert("Vous n'êtes rattaché à aucun lycée.");
+
+        return;
+
     }
 
     try{
 
-        await deleteDoc(doc(db,"quiz",id));
+        console.log("Utilisateur :", monEmail);
 
-        alert("✅ Quiz supprimé avec succès !");
+        console.log("Lycée :", monLyceeId);
+
+        await addDoc(collection(db,"quiz"),{
+
+            question: question,
+
+            bonneReponse: bonneReponse,
+
+            mauvaiseReponse: mauvaiseReponse,
+
+            salle: salle,
+
+            matiere: matiere,
+
+            visibilite: visibilite,
+
+            lyceeId:
+            visibilite === "lycee"
+            ? monLyceeId
+            : "",
+
+            auteur: monEmail,
+
+            date: serverTimestamp()
+
+        });
+
+
+        alert("✅ Quiz publié avec succès !");
+
+        document.getElementById("questionQuiz").value = "";
+
+        document.getElementById("bonneReponse").value = "";
+
+        document.getElementById("mauvaiseReponse").value = "";
 
         afficherQuiz();
 
     }catch(error){
 
         alert("Erreur : " + error.message);
-
     }
 
 };
+// Afficher les quiz
+
+async function afficherQuiz(){
+    const liste =
+    document.getElementById("listeQuiz");
+    if(!liste) return;
+    liste.innerHTML =
+    "<p>Chargement...</p>";
+    try{
+
+        const snapshot =
+        await getDocs(collection(db,"quiz"));
+        let html = "";
+        snapshot.forEach((document)=>{
+            const quiz = document.data();
+
+            if(
+
+                quiz.lyceeId === monLyceeId
+
+                ||
+
+                quiz.visibilite === "public"
+
+            ){
+
+
+                html += `
+
+                <div class="card">
+
+
+                <h3>📝 ${quiz.question}</h3>
+
+                <p>🏫 Salle : ${quiz.salle}</p>
+
+                <p>📚 Matière : ${quiz.matiere}</p>
+
+                <p>🌍 Visibilité : ${quiz.visibilite}</p>
+
+                <p>✅ Bonne réponse :
+                ${quiz.bonneReponse}
+                </p>
+
+                <p>❌ Mauvaise réponse :
+                ${quiz.mauvaiseReponse}
+                </p>
+
+                ${
+                quiz.auteur === monEmail
+                ?
+                `
+                <button onclick="supprimerQuiz('${document.id}')">
+                🗑️ Supprimer
+                </button>
+                `
+                :
+                ""
+                }
+
+                </div>
+
+                `;
+
+            }
+
+        });
+
+        if(html === ""){
+
+
+            liste.innerHTML =
+            "<p>Aucun quiz disponible.</p>";
+
+        }else{
+
+            liste.innerHTML = html;
+
+        }
+    }catch(error){
+
+        liste.innerHTML =
+        "Erreur : " + error.message;
+
+    }
+
+}
+
+// Supprimer un quiz
+
+window.supprimerQuiz = async function(id){
+
+    if(!confirm("Supprimer ce quiz ?")){
+
+        return;
+
+    }
+    try{
+        await deleteDoc(
+            doc(db,"quiz",id)
+        );
+
+        alert("✅ Quiz supprimé");
+
+        afficherQuiz();
+    }catch(error){
+        alert(error.message);
+    }
+
+};
+
+// Démarrage
+
+async function demarrer(){
+
+    await recupererUtilisateur();
+
+    afficherQuiz();
+
+}
+
+demarrer();

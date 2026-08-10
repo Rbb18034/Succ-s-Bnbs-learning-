@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gestion utilisateurs</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<header>
+
+<h1>👥 Gestion des utilisateurs</h1>
+
+<p>Administration</p>
+
+</header>
+
+
+
+<div class="container">
+
+
+<div class="card">
+
+<h2>🔍 Rechercher un utilisateur</h2>
+
+<input 
+type="text"
+id="rechercheUtilisateur"
+placeholder="Nom ou email"
+onkeyup="rechercherUtilisateur()">
+<select id="filtreRole" onchange="filtrerUtilisateurs()">
+
+<option value="">
+Tous les rôles
+</option>
+
+<option value="Admin">
+Administrateurs
+</option>
+
+<option value="Proviseur">
+Proviseurs
+</option>
+
+<option value="Enseignant">
+Enseignants
+</option>
+
+<option value="Eleve">
+Élèves
+</option>
+
+</select>
+
+</div>
+
+
+
+<div class="card">
+
+
+<h2>Liste des utilisateurs</h2>
+
+
+<div id="listeUtilisateurs">
+
+<p>Chargement...</p>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<script type="module" src="gestion-utilisateurs.js"></script>
+
+<script type="module" src="protection.js"></script>
+
+
+</body>
+
+</html>

@@ -54,6 +54,22 @@
 
 <br><br>
 
+<label><strong>🌍 Visibilité</strong></label>
+
+<select id="visibilitePDF">
+
+    <option value="public">
+        🌍 Pour tout le monde
+    </option>
+
+    <option value="lycee">
+        🏫 Mon lycée uniquement
+    </option>
+
+</select>
+
+<br><br>
+
 <input
 type="text"
 id="titrePDF"
@@ -73,6 +89,7 @@ placeholder="Collez le lien du PDF">
 <div class="card">
 
 <h2>Documents disponibles</h2>
+
 <input
 type="text"
 id="recherchePDF"
@@ -80,6 +97,7 @@ placeholder="🔍 Rechercher un document..."
 onkeyup="rechercherPDF()">
 
 <br><br>
+
 <div id="listePDF">
 <p>Aucun document.</p>
 </div>
@@ -89,7 +107,7 @@ onkeyup="rechercherPDF()">
 </div>
 
 <script type="module" src="bibliotheque.js"></script>
-</script>
 <script type="module" src="protection.js"></script>
+
 </body>
 </html>

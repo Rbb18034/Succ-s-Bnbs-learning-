@@ -1,28 +1,44 @@
-/* ===== Succès BNBS Learning - Design Moderne ===== */
+/* =====================================================
+   SUCCÈS BNBS LEARNING
+   DESIGN MODERNE BLANC + SOMBRE
+===================================================== */
+
 
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
+
 
 body{
 
-    margin:0;
-    padding:0;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:
+    Arial, Helvetica, sans-serif;
 
-    background:#f4f8ff;
+    background:#121212;
+
     color:#333;
 
     min-height:100vh;
 
+    padding-bottom:80px;
+
 }
 
 
-/* ===== HEADER ===== */
+
+/* ================= HEADER ================= */
+
 
 header{
 
-    background:linear-gradient(135deg,#1565C0,#42A5F5);
+    background:
+    linear-gradient(
+        135deg,
+        #0d47a1,
+        #1976d2
+    );
 
     color:white;
 
@@ -30,31 +46,53 @@ header{
 
     padding:30px 20px;
 
-    box-shadow:0 4px 15px rgba(0,0,0,.15);
+    border-radius:0 0 30px 30px;
+
+    box-shadow:
+    0 5px 20px rgba(0,0,0,.4);
 
 }
 
 
 header h1{
 
-    margin:0;
+    font-size:28px;
 
-    font-size:30px;
+    margin-bottom:10px;
 
 }
 
 
 header p{
 
-    margin-top:10px;
+    font-size:16px;
 
-    font-size:17px;
+    opacity:.9;
 
 }
 
 
 
-/* ===== CONTENEUR ===== */
+/* ================= LOGO ================= */
+
+
+.logo{
+
+    width:90px;
+
+    height:90px;
+
+    object-fit:contain;
+
+    border-radius:20px;
+
+    margin-bottom:10px;
+
+}
+
+
+
+/* ================= CONTAINER ================= */
 
 
 .container{
@@ -63,20 +101,18 @@ header p{
 
     max-width:1100px;
 
-    margin:30px auto;
-
-    padding-bottom:80px;
+    margin:25px auto;
 
 }
 
 
 
-/* ===== CARTES ===== */
+/* ================= CARTES ================= */
 
 
 .card{
 
-    background:white;
+    background:#ffffff;
 
     padding:25px;
 
@@ -84,9 +120,11 @@ header p{
 
     border-radius:20px;
 
-    box-shadow:0 8px 25px rgba(0,0,0,.10);
+    box-shadow:
 
-    border:none;
+    0 8px 25px rgba(0,0,0,.25);
+
+    border:1px solid #eeeeee;
 
     transition:.3s;
 
@@ -95,22 +133,40 @@ header p{
 
 .card:hover{
 
-    transform:translateY(-5px);
+    transform:translateY(-4px);
 
 }
 
 
-.card h2,
-.card h3{
+.card h2{
 
     color:#1565C0;
 
+    margin-bottom:15px;
+
+}
+
+
+.card h3{
+
+    color:#0d47a1;
+
+    margin-bottom:10px;
+
+}
+
+
+.card p{
+
+    line-height:1.6;
+
 }
 
 
 
-/* ===== BOUTONS ===== */
 
+
+/* ================= BOUTONS MULTICOLORES ================= */
 
 button{
 
@@ -120,9 +176,7 @@ button{
 
     border:none;
 
-    border-radius:12px;
-
-    background:#1565C0;
+    border-radius:15px;
 
     color:white;
 
@@ -134,20 +188,79 @@ button{
 
     transition:.3s;
 
+    box-shadow:
+    0 5px 15px rgba(0,0,0,.25);
+
 }
 
+
+/* Bouton principal */
+
+button{
+
+    background:
+    linear-gradient(135deg,#1565C0,#42A5F5);
+
+}
+
+
+
+/* Bouton vert */
+
+.btn-success{
+
+    background:
+    linear-gradient(135deg,#00c853,#69f0ae);
+
+}
+
+
+
+/* Bouton orange */
+
+.btn-warning{
+
+    background:
+    linear-gradient(135deg,#ff6d00,#ffca28);
+
+}
+/* Bouton rouge */
+
+.btn-danger{
+
+    background:
+    linear-gradient(135deg,#d50000,#ff5252);
+
+}
+
+/* Bouton violet */
+
+.btn-purple{
+
+    background:
+    linear-gradient(135deg,#6a1b9a,#ce93d8);
+
+}
+
+/* Bouton turquoise */
+
+.btn-info{
+
+    background:
+    linear-gradient(135deg,#00838f,#26c6da);
+
+}
 
 button:hover{
 
-    background:#0D47A1;
+    transform:
+    translateY(-3px);
 
-    transform:scale(1.02);
+    opacity:.9;
 
 }
 
-
-
-/* ===== FORMULAIRES ===== */
+/* ================= FORMULAIRES ================= */
 
 
 input,
@@ -160,16 +273,15 @@ textarea{
 
     margin:10px 0;
 
-    border:1px solid #ddd;
-
     border-radius:12px;
 
-    font-size:16px;
+    border:1px solid #ccc;
 
     background:#fafafa;
 
-}
+    font-size:16px;
 
+}
 
 
 input:focus,
@@ -180,14 +292,20 @@ textarea:focus{
 
     border-color:#1565C0;
 
-    box-shadow:0 0 5px rgba(21,101,192,.3);
+    box-shadow:
+    0 0 5px rgba(21,101,192,.4);
 
 }
 
 
 
-/* ===== LIENS ===== */
+textarea{
 
+    min-height:120px;
+
+}
+
+/* ================= LIENS ================= */
 
 a{
 
@@ -200,9 +318,13 @@ a{
 }
 
 
+a:hover{
 
-/* ===== MEDIA ===== */
+    text-decoration:underline;
 
+}
+
+/* ================= MEDIA ================= */
 
 img,
 video,
@@ -214,9 +336,97 @@ iframe{
 
 }
 
+/* ================= TABLEAU DE BORD ================= */
+.dashboard{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:15px;
+
+}
+.stat-card{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:
+
+    0 5px 20px rgba(0,0,0,.25);
+
+}
 
 
-/* ===== NAVIGATION MOBILE ===== */
+.stat-card h3{
+
+    color:#1565C0;
+
+    font-size:30px;
+
+    margin-bottom:5px;
+
+}
+.stat-card p{
+
+    color:#555;
+
+}
+
+/* ================= MENU ================= */
+
+.menu-btn{
+
+    display:block;
+
+    width:100%;
+
+    padding:18px;
+
+    margin:12px 0;
+
+    border-radius:18px;
+
+    background:
+
+    linear-gradient(
+    135deg,
+    #1565C0,
+    #42A5F5
+    );
+
+    color:white;
+
+    text-align:center;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    box-shadow:
+
+    0 5px 15px rgba(0,0,0,.3);
+
+}
+
+
+.menu-btn:hover{
+
+    transform:translateY(-3px);
+
+    text-decoration:none;
+
+}
+
+
+
+/* ================= NAVIGATION MOBILE ================= */
 
 
 .bottom-nav{
@@ -237,21 +447,25 @@ iframe{
 
     padding:10px 0;
 
-    box-shadow:0 -3px 15px rgba(0,0,0,.15);
+    box-shadow:
+
+    0 -3px 15px rgba(0,0,0,.3);
 
     z-index:2000;
 
 }
 
 
+
 .bottom-nav a{
 
     text-align:center;
 
+    color:#1565C0;
+
     font-size:13px;
 
 }
-
 
 
 .bottom-nav span{
@@ -276,72 +490,175 @@ iframe{
 
 
 
-/* ===== TABLEAU DE BORD ===== */
+/* ================= ANNONCES ================= */
 
 
-.dashboard{
-
-    display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
-    gap:15px;
-
-}
-
-
-
-.stat-card{
+.annonce-card{
 
     background:white;
 
-    padding:20px;
+    border-radius:20px;
 
-    text-align:center;
+    overflow:hidden;
 
-    border-radius:18px;
+    margin-bottom:20px;
 
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    box-shadow:
+
+    0 8px 20px rgba(0,0,0,.25);
 
 }
 
 
 
-.stat-card h3{
+.annonce-image{
+
+    width:100%;
+
+    height:180px;
+
+    object-fit:cover;
+
+}
+
+
+
+.sponsorise{
+
+    padding:10px;
+
+    color:#777;
+
+    font-size:13px;
+
+    text-align:right;
+
+}
+
+
+
+/* ================= BADGES ================= */
+
+
+.badge{
+
+    display:inline-block;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    background:#e3f2fd;
 
     color:#1565C0;
 
-    font-size:30px;
+    font-weight:bold;
 
 }
 
+
+
+/* ================= RESPONSIVE ================= */
 
 
 @media(max-width:600px){
 
-    header h1{
 
-        font-size:23px;
+header h1{
 
-    }
-
-
-    .container{
-
-        width:95%;
-
-    }
-
-
-    .card{
-
-        padding:18px;
-
-    }
+    font-size:22px;
 
 }
-.logo{
 
-    width:80px;
 
+.container{
+
+    width:95%;
+
+}
+
+
+.card{
+
+    padding:18px;
+
+}
+
+
+button{
+
+    font-size:15px;
+
+}
+
+
+.dashboard{
+
+    gap:10px;
+
+}
+
+
+.stat-card{
+
+    padding:15px;
+
+}
+
+
+.stat-card h3{
+
+    font-size:25px;
+
+}
+
+
+}
+
+
+
+/* ================= SCROLL ================= */
+
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+
+::-webkit-scrollbar-track{
+
+    background:#222;
+
+}
+
+
+::-webkit-scrollbar-thumb{
+
+    background:#1565C0;
+
+    border-radius:10px;
+
+}
+/* ===== BOUTONS MULTICOLORES ===== */
+
+.btn-success{
+    background:linear-gradient(135deg,#00a651,#00d084);
+}
+
+.btn-warning{
+    background:linear-gradient(135deg,#ff8c00,#ffc107);
+}
+
+.btn-purple{
+    background:linear-gradient(135deg,#6a1b9a,#9c27b0);
+}
+
+.btn-danger{
+    background:linear-gradient(135deg,#d32f2f,#ff5252);
+}
+
+.btn-info{
+    background:linear-gradient(135deg,#00838f,#26c6da);
 }

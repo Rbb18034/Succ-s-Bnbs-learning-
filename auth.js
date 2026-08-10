@@ -7,7 +7,9 @@ import {
 import {
     doc,
     setDoc,
-    getDoc
+    getDoc,
+    collection,
+    getDocs
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 import { auth, db } from "./firebase.js";
@@ -16,63 +18,189 @@ import { auth, db } from "./firebase.js";
 // INSCRIPTION
 window.inscription = async function(){
 
+
     let nom = document.getElementById("nom").value;
+
     let email = document.getElementById("email").value;
+
     let password = document.getElementById("password").value;
+
     let role = document.getElementById("role").value;
-    let classe = document.getElementById("classe").value;
+
+
+
+    let lyceeId = "";
+
+    let classe = "";
+
+    let matiere = "";
+
 
 
     try {
 
+
+        // Cas élève
+
+        if(role === "Eleve"){
+
+
+            classe = document.getElementById("classe").value;
+
+
+            let typeEleve =
+            document.getElementById("typeEleve").value;
+
+
+            let codeLycee =
+            document.getElementById("codeLycee").value;
+
+
+
+            // Élève avec lycée
+
+            if(typeEleve === "lycee"){
+
+
+                if(!codeLycee){
+
+                    alert("Veuillez entrer le code du lycée");
+
+                    return;
+
+                }
+
+
+
+                const resultat = await getDocs(
+                    collection(db,"lycees")
+                );
+
+
+
+                let trouve = false;
+
+
+
+                resultat.forEach((doc)=>{
+
+
+                    let lycee = doc.data();
+
+
+if(lycee.code && lycee.code.toUpperCase() === codeLycee.toUpperCase().trim()){
+
+
+                        lyceeId = doc.id;
+
+                        trouve = true;
+
+
+                    }
+
+
+                });
+
+
+
+                if(!trouve){
+
+                    alert("Code lycée incorrect");
+
+                    return;
+
+                }
+
+
+            }
+
+
+        }
+
+
+
+        // Cas enseignant
+
+        if(role === "Enseignant"){
+
+
+            matiere =
+            document.getElementById("matiere").value;
+
+
+            classe =
+            document.getElementById("classeEnseignant").value;
+
+
+        }
+
+
+
+
         await createUserWithEmailAndPassword(
+
             auth,
+
             email,
+
             password
+
         );
 
 
-await setDoc(doc(db,"utilisateurs",email),{
-
-    nom: nom,
-    email: email,
-    role: role,
-    classe: classe,
-    matiere: "",
-    salle: ""
-
-});
 
 
-alert("Compte créé avec succès !");
 
-if(role === "Enseignant"){
+        await setDoc(
 
-    window.location.href="admin.html";
+            doc(db,"utilisateurs",email),
 
-}else{
-
-    window.location.href="eleve.html";
-
-}
+            {
 
 
-    } catch(error){
+                nom: nom,
 
-if(error.code === "auth/email-already-in-use"){
+                email: email,
 
-    alert("⚠️ Cette adresse e-mail possède déjà un compte.");
+                role: role,
 
-}else{
+                classe: classe,
 
-    alert(error.message);
+                matiere: matiere,
 
-}
+                lyceeId: lyceeId,
+
+
+                statut:"Actif"
+
+
+            }
+
+        );
+
+
+
+        alert("Compte créé avec succès !");
+
+
+
+        window.location.href="login.html";
+
+
+
+    }catch(error){
+
+
+        console.error(error);
+
+
+        alert(error.message);
+
 
     }
 
-};
 
+};
 
 
 // CONNEXION
@@ -113,6 +241,11 @@ alert("Connexion réussie !");
 if(role === "Admin"){
 
     window.location.href="admin.html";
+
+}
+else if(role == "Proviseur"){
+
+    window.location.href = "proviseur.html";
 
 }
 else if(role === "Enseignant"){

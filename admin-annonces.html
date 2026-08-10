@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Annonces sponsorisées</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>📢 Annonces sponsorisées</h1>
+
+<p>Succès BNBS Learning</p>
+
+</header>
+
+
+<div class="container">
+
+
+<div class="card">
+
+<h2>Ajouter une annonce</h2>
+
+
+<input 
+type="text" 
+id="titreAnnonce"
+placeholder="Titre de l'annonce">
+
+
+<textarea 
+id="descriptionAnnonce"
+placeholder="Description de l'annonce">
+</textarea>
+
+
+<input 
+type="text" 
+id="imageAnnonce"
+placeholder="Lien de l'image">
+<input
+type="text"
+id="proviseurLycee"
+placeholder="Nom du proviseur">
+
+<input
+type="email"
+id="emailProviseur"
+placeholder="Email du proviseur">
+
+<input 
+type="text" 
+id="lienAnnonce"
+placeholder="Lien WhatsApp ou site">
+<label>Durée de l'annonce</label>
+
+<select id="dureeAnnonce">
+
+<option value="7">7 jours</option>
+
+<option value="15">15 jours</option>
+
+<option value="30" selected>30 jours</option>
+
+<option value="90">90 jours</option>
+
+</select>
+
+<button onclick="ajouterAnnonce()">
+➕ Publier l'annonce
+</button>
+
+
+</div>
+
+
+
+<div class="card">
+
+<h2>Annonces publiées</h2>
+
+
+<div id="listeAnnonces">
+
+<p>Aucune annonce</p>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<script type="module" src="annonces-sponsor.js"></script>
+
+
+</body>
+
+</html>

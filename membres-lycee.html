@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Membres du lycée</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>👥 Membres du lycée</h1>
+
+<p>Succès BNBS Learning</p>
+
+</header>
+
+
+
+<div class="container">
+
+
+<!-- Ajouter un membre -->
+
+<div class="card">
+
+<h2>➕ Ajouter un membre</h2>
+
+
+<input 
+type="text"
+id="nomMembre"
+placeholder="Nom complet">
+
+
+<input 
+type="email"
+id="emailMembre"
+placeholder="Email">
+
+
+<select id="roleMembre">
+
+<option value="Enseignant">
+👨‍🏫 Enseignant
+</option>
+
+<option value="Eleve">
+👨‍🎓 Élève
+</option>
+
+</select>
+
+
+<input
+type="text"
+id="informationMembre"
+placeholder="Information supplémentaire">
+
+
+<input 
+type="text"
+id="matiereMembre"
+placeholder="Matière (pour enseignant)">
+
+
+<input 
+type="text"
+id="classeMembre"
+placeholder="Classe">
+
+
+<input 
+type="text"
+id="salleMembre"
+placeholder="Salle">
+
+
+<input 
+type="text"
+id="matriculeMembre"
+placeholder="Matricule (pour élève)">
+
+
+
+<button onclick="ajouterMembre()">
+
+➕ Ajouter
+
+</button>
+
+
+</div>
+
+<option value="Enseignant">
+👨‍🏫 Enseignant
+</option>
+
+<option value="Eleve">
+👨‍🎓 Élève
+</option>
+
+</select>
+
+
+<input
+type="text"
+id="informationMembre"
+placeholder="Matière ou Classe">
+
+
+<button onclick="ajouterMembre()">
+<input 
+type="text"
+id="matiereMembre"
+placeholder="Matière (pour enseignant)">
+
+
+<input 
+type="text"
+id="classeMembre"
+placeholder="Classe">
+
+
+<input 
+type="text"
+id="salleMembre"
+placeholder="Salle">
+
+
+<input 
+type="text"
+id="matriculeMembre"
+placeholder="Matricule (pour élève)">
+Ajouter
+
+</button>
+
+
+</div>
+
+
+
+
+<!-- Liste des membres -->
+
+<div class="card">
+
+<h2>Liste des membres</h2>
+
+
+<div id="listeMembres">
+
+<p>Aucun membre enregistré</p>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<script type="module" src="membres-lycee.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gestion des lycées</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>🏫 Gestion des lycées</h1>
+
+<p>Succès BNBS Learning</p>
+
+</header>
+
+
+
+<div class="container">
+
+
+<div class="card">
+
+<h2>Ajouter un lycée</h2>
+
+
+<input 
+type="text"
+id="nomLycee"
+placeholder="Nom du lycée">
+
+
+<input 
+type="text"
+id="villeLycee"
+placeholder="Ville">
+
+
+<input 
+type="text"
+id="logoLycee"
+placeholder="Lien du logo">
+
+
+<input 
+type="text"
+id="contactLycee"
+placeholder="Contact du lycée">
+<input
+type="text"
+id="proviseurLycee"
+placeholder="Nom du proviseur">
+
+<input
+type="email"
+id="emailProviseur"
+placeholder="Email du proviseur">
+
+
+<button onclick="ajouterLycee()">
+➕ Ajouter le lycée
+</button>
+
+
+</div>
+
+
+
+<div class="card">
+
+
+<h2>Liste des lycées</h2>
+
+
+<div id="listeLycees">
+
+<p>Aucun lycée enregistré</p>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<script type="module" src="gestion-lycees.js"></script>
+
+
+</body>
+
+</html>

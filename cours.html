@@ -17,9 +17,11 @@
 <div class="container">
 
 <div class="card">
+
 <h2>Publier un cours</h2>
 
 <label><strong>🏫 Salle</strong></label>
+
 <select id="salleCours">
     <option value="">Choisir une salle</option>
     <option>6e A</option>
@@ -37,6 +39,7 @@
 <br><br>
 
 <label><strong>📚 Matière</strong></label>
+
 <select id="matiereCours">
     <option value="">Choisir une matière</option>
     <option>Mathématiques</option>
@@ -47,6 +50,22 @@
     <option>Anglais</option>
     <option>Histoire-Géographie</option>
     <option>Informatique</option>
+</select>
+
+<br><br>
+
+<label><strong>🌍 Visibilité</strong></label>
+
+<select id="visibiliteCours">
+
+    <option value="public">
+        🌍 Pour tout le monde
+    </option>
+
+    <option value="lycee">
+        🏫 Mon lycée uniquement
+    </option>
+
 </select>
 
 <br><br>
@@ -64,6 +83,7 @@ placeholder="Description du cours">
 <button onclick="publierCours()">
 Publier le cours
 </button>
+
 </div>
 
 <div class="card">
@@ -79,6 +99,8 @@ Publier le cours
 </div>
 
 </div>
+
 <script type="module" src="app.js"></script>
+
 </body>
 </html>

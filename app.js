@@ -12,7 +12,8 @@ import {
     deleteDoc,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-
+let monLyceeId = "";
+let monEmail = "";
 const CLOUD_NAME = "kpgui0fj";
 const UPLOAD_PRESET = "succes-bnbs-videos";
 
@@ -457,21 +458,33 @@ window.publierCours = async function () {
     const matiere = document.getElementById("matiereCours").value;
     const titre = document.getElementById("titre").value;
     const description = document.getElementById("description").value;
-
+const visibilite = document.getElementById("visibiliteCours").value;
     if (!salle || !matiere || !titre || !description) {
         alert("Veuillez remplir tous les champs.");
         return;
     }
 
     try {
+console.log("🏫 LYCEE AVANT PUBLICATION :", monLyceeId);
+console.log("👤 EMAIL :", monEmail);
+console.log("🌍 VISIBILITE :", visibilite);
+await addDoc(collection(db, "cours"), {
 
-        await addDoc(collection(db, "cours"), {
-            salle: salle,
-            matiere: matiere,
-            titre: titre,
-            description: description,
-            date: new Date()
-        });
+    salle: salle,
+
+    matiere: matiere,
+
+    titre: titre,
+
+    description: description,
+
+    visibilite: visibilite,
+
+    lyceeId: visibilite === "lycee" ? monLyceeId : "",
+
+    date: new Date()
+
+});
 
         alert("✅ Cours publié avec succès !");
 
@@ -487,3 +500,75 @@ window.publierCours = async function () {
     }
 
 };
+async function afficherNomLycee(){
+
+    const email = localStorage.getItem("email");
+
+    if(!email) return;
+
+    const utilisateur = await getDoc(doc(db,"utilisateurs",email));
+
+    if(!utilisateur.exists()) return;
+
+    const data = utilisateur.data();
+
+    if(data.role !== "Proviseur") return;
+
+    if(!data.lyceeId) return;
+
+    const lycee = await getDoc(doc(db,"lycees",data.lyceeId));
+
+    if(!lycee.exists()) return;
+
+    const titre = document.getElementById("bienvenue");
+
+    if(titre){
+
+        titre.innerHTML =
+        "🏫 " + lycee.data().nom;
+
+    }
+
+}
+
+afficherNomLycee();
+async function recupererUtilisateur(){
+
+    const email = localStorage.getItem("email");
+
+    if(!email){
+        return;
+    }
+
+    monEmail = email;
+
+
+    const utilisateur = await getDoc(
+        doc(db,"utilisateurs",email)
+    );
+
+
+    if(utilisateur.exists()){
+
+        const data = utilisateur.data();
+
+        monLyceeId = data.lyceeId || "";
+
+
+        console.log("Nom :", data.nom);
+        console.log("Rôle :", data.role);
+        console.log("Lycée :", monLyceeId);
+
+    }
+
+}
+recupererUtilisateur();
+async function demarrer(){
+
+    await recupererMonLycee();
+
+    afficherCours();
+
+}
+
+demarrer();
