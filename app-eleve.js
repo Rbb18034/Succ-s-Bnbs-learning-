@@ -1,10 +1,8 @@
 import { db } from "./firebase.js";
 
 import {
-    doc,
     collection,
     getDocs,
-    getDoc,
     addDoc,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
@@ -25,124 +23,44 @@ async function afficherCoursEleve() {
 
     if (!liste) return;
 
-    const email = localStorage.getItem("email");
+    const salleChoisie = localStorage.getItem("salle");
+    const matiereChoisie = localStorage.getItem("matiere");
 
     liste.innerHTML = "<p>Chargement des cours...</p>";
 
     try {
 
-        if (!email) {
-            liste.innerHTML = "<p>Utilisateur non connecté.</p>";
-            return;
-        }
-
-        // =========================
-        // RÉCUPÉRER L'ÉLÈVE
-        // =========================
-
-        const utilisateurSnap = await getDoc(
-            doc(db, "utilisateurs", email)
-        );
-
-        if (!utilisateurSnap.exists()) {
-
-            liste.innerHTML =
-                "<p>Compte élève introuvable.</p>";
-
-            return;
-        }
-
-        const eleve = utilisateurSnap.data();
-
-        const lyceeId = eleve.lyceeId || "";
-
-        console.log("📚 Affichage des cours");
-        console.log("📧 Élève :", email);
-        console.log("🏫 Lycée :", lyceeId);
-
-
-        if (!lyceeId) {
-
-            liste.innerHTML =
-                "<p>Votre compte n'est rattaché à aucun lycée.</p>";
-
-            return;
-        }
-
-
-        // =========================
-        // RÉCUPÉRER LES COURS
-        // =========================
-
-        const snapshot =
-            await getDocs(
-                collection(db, "cours")
-            );
-
+        const snapshot = await getDocs(collection(db, "cours"));
 
         let html = "";
 
+        snapshot.forEach((doc) => {
 
-        snapshot.forEach((document) => {
-
-            const cours = document.data();
-
-
-            console.log("📚 Cours :", cours);
-
-
-            // L'élève voit uniquement
-            // les cours de son lycée
+            const cours = doc.data();
 
             if (
-                cours.lyceeId === lyceeId
+                cours.salle === salleChoisie &&
+                cours.matiere === matiereChoisie
             ) {
 
                 html += `
-
                 <div class="card">
 
-                    <h3>
-                        📚 ${cours.titre || "Cours sans titre"}
-                    </h3>
+                    <h3>📚 ${cours.titre}</h3>
 
                     <p>
-                        🏫 Salle :
-                        ${cours.salle || "Non précisée"}
+                    🏫 Salle : ${cours.salle}
                     </p>
 
                     <p>
-                        📖 Matière :
-                        ${cours.matiere || "Non précisée"}
+                    📖 Matière : ${cours.matiere}
                     </p>
 
-                    ${
-                        cours.description
-                        ?
-                        `<p>${cours.description}</p>`
-                        :
-                        ""
-                    }
-
-                    ${
-                        cours.lien
-                        ?
-                        `
-                        <p>
-                            <a
-                                href="${cours.lien}"
-                                target="_blank"
-                            >
-                                📖 Ouvrir le cours
-                            </a>
-                        </p>
-                        `
-                        :
-                        ""
-                    }
+                    <p>
+                    ${cours.description}
+                    </p>
 
                 </div>
-
                 `;
 
             }
@@ -150,38 +68,52 @@ async function afficherCoursEleve() {
         });
 
 
-        // =========================
-        // AFFICHAGE
-        // =========================
+        if(html === ""){
 
-        if (html === "") {
+            liste.innerHTML = "<p>Aucun cours disponible pour cette salle et cette matière.</p>";
 
-            liste.innerHTML =
-                "<p>Aucun cours disponible pour votre lycée.</p>";
-
-        } else {
+        }else{
 
             liste.innerHTML = html;
 
         }
 
 
-    } catch (error) {
+    } catch(error){
 
-        console.error(
-            "❌ Erreur affichage cours :",
-            error
-        );
-
-        liste.innerHTML =
-            "Erreur : " + error.message;
+        liste.innerHTML = "Erreur : " + error.message;
 
     }
 
 }
 
 afficherCoursEleve();
+window.rechercherCours = function(){
 
+    const texte = document
+        .getElementById("rechercheCours")
+        .value
+        .toLowerCase();
+
+    const cartes = document.querySelectorAll("#listeCours .card");
+
+    cartes.forEach((carte)=>{
+
+        const contenu = carte.textContent.toLowerCase();
+
+        if(contenu.includes(texte)){
+
+            carte.style.display = "block";
+
+        }else{
+
+            carte.style.display = "none";
+
+        }
+
+    });
+
+};
 async function afficherQuizEleve() {
 
     const liste = document.getElementById("listeQuizEleve");
@@ -443,176 +375,18 @@ window.rechercherPDF = function(){
 };
 async function chargerStatistiques(){
 
-    try{
+    const cours = await getDocs(collection(db,"cours"));
+    document.getElementById("nombreCours").textContent = cours.size;
 
-        const email = localStorage.getItem("email");
+    const pdf = await getDocs(collection(db,"bibliotheque"));
+    document.getElementById("nombrePDF").textContent = pdf.size;
 
-        if(!email){
-            console.log("Aucun utilisateur connecté");
-            return;
-        }
+    const videos = await getDocs(collection(db,"videos"));
+    document.getElementById("nombreVideos").textContent = videos.size;
 
-
-        // Récupérer l'élève
-        const utilisateurRef = doc(db,"utilisateurs",email);
-
-        const utilisateurSnap = await getDoc(utilisateurRef);
-
-
-        if(!utilisateurSnap.exists()){
-
-            console.log("Utilisateur introuvable");
-            return;
-
-        }
-
-
-        const eleve = utilisateurSnap.data();
-
-
-        const lyceeId = eleve.lyceeId || "";
-const salle = "";
-const matiere = "";
-
-
-        console.log("📧 Élève :", email);
-        console.log("🏫 Lycée :", lyceeId);
-        console.log("📚 Salle :", salle);
-        console.log("📖 Matière :", matiere);
-
-
-        // =========================
-        // COURS
-        // =========================
-
-        const coursSnapshot =
-        await getDocs(
-            collection(db,"cours")
-        );
-        let nombreCours = 0;
-        coursSnapshot.forEach((document)=>{
-
-            const cours = document.data();
-if(
-    cours.lyceeId === lyceeId
-){
-                nombreCours++;
-
-            }
-
-        });
-const compteurCours = document.getElementById("nombreCours");
-
-if(compteurCours){
-    compteurCours.textContent = nombreCours;
-}
-
-
-
-        // =========================
-        // PDF
-        // =========================
-
-        const pdfSnapshot =
-        await getDocs(
-            collection(db,"bibliotheque")
-        );
-
-        let nombrePDF = 0;
-
-        pdfSnapshot.forEach((document)=>{
-
-            const pdf = document.data();
-            if(
-
-                (
-                    pdf.visibilite === "public"
-
-                    ||
-
-                    (
-                        pdf.visibilite === "lycee" &&
-                        pdf.lyceeId === lyceeId
-                    )
-                )
-
-            ){
-
-                nombrePDF++;
-
-            }
-
-        });
-
-
-const compteurPDF = document.getElementById("nombrePDF");
-
-if(compteurPDF){
-   compteurPDF.textContent = nombrePDF;
-}
-
-        // =========================
-        // VIDEOS
-        // =========================
-
-        const videosSnapshot =
-        await getDocs(
-            collection(db,"videos")
-        );
-
-        document.getElementById("nombreVideos").textContent =
-        videosSnapshot.size;
-
-        // =========================
-        // QUIZ
-        // =========================
-
-        const quizSnapshot =
-        await getDocs(
-            collection(db,"quiz")
-        );
-
-        let nombreQuiz = 0;
-        quizSnapshot.forEach((document)=>{
-            const quiz = document.data();
-
-            if(
-               (
-                    quiz.visibilite === "public"
-
-                    ||
-
-                    (
-                        quiz.visibilite === "lycee" &&
-                        quiz.lyceeId === lyceeId
-                    )
-                )
-            ){
-                nombreQuiz++;
-            }
-        });
-const compteurQuiz = document.getElementById("nombreQuiz");
-
-if(compteurQuiz){
-    compteurQuiz.textContent = nombreQuiz;
-}
-        console.log("📊 Statistiques chargées :");
-
-        console.log("Cours :", nombreCours);
-
-        console.log("PDF :", nombrePDF);
-
-        console.log("Vidéos :", videosSnapshot.size);
-
-        console.log("Quiz :", nombreQuiz);
-    }catch(error){
-
-        console.error(
-            "Erreur statistiques :",
-            error
-        );
-
-    }
+    const quiz = await getDocs(collection(db,"quiz"));
+    document.getElementById("nombreQuiz").textContent = quiz.size;
 
 }
+
 chargerStatistiques();

@@ -1,25 +1,26 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 
 import {
-    getAuth,
-    onAuthStateChanged
+getAuth,
+onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 import {
-    getFirestore,
-    doc,
-    getDoc
+getFirestore,
+doc,
+getDoc
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCi45ZHpUKKAVVYEXl9ASxH4Fn3SjJHpo",
-    authDomain: "succes-rega-learning.firebaseapp.com",
-    projectId: "succes-rega-learning",
-    storageBucket: "succes-rega-learning.firebasestorage.app",
-    messagingSenderId: "257244709472",
-    appId: "1:257244709472:web:f965362a34e713bfe27905"
+  apiKey: "AIzaSyCi45ZHpUKKAVVYEXl9ASxHn4Fn3SjJHpo",
+  authDomain: "succes-rega-learning.firebaseapp.com",
+  projectId: "succes-rega-learning",
+  storageBucket: "succes-rega-learning.firebasestorage.app",
+  messagingSenderId: "257244709472",
+  appId: "1:257244709472:web:f965362a34e713bfe27905"
 };
+
 
 const app = initializeApp(firebaseConfig);
 
@@ -27,87 +28,50 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 
+
 onAuthStateChanged(auth, async (user)=>{
 
     if(!user){
 
-        window.location.href="login.html";
+        window.location.href = "login.html";
         return;
 
     }
 
-    try{
 
-        const utilisateur = await getDoc(
-            doc(db,"utilisateurs",user.email)
-        );
-
-        if(!utilisateur.exists()){
-
-            alert("Compte introuvable");
-            window.location.href="login.html";
-            return;
-
-        }
-
-        const role = utilisateur.data().role;
-
-        const page = window.location.pathname;
+    const utilisateur = await getDoc(
+        doc(db,"utilisateurs",user.email)
+    );
 
 
+    if(utilisateur.exists()){
 
-        // ADMIN
-        if(page.includes("gestion-utilisateurs.html") ||
-           page.includes("gestion-lycees.html")){
+        let role = utilisateur.data().role;
 
-            if(role !== "Admin"){
 
-                alert("⛔ Accès réservé à l'administrateur");
+        // Protection admin
 
-                window.location.href="admin.html";
-                return;
+        if(window.location.pathname.includes("admin.html")){
 
-            }
+if(role !== "Enseignant" && role !== "Admin"){
+
+    window.location.href = "eleve.html";
+
+}
 
         }
 
 
+        // Protection élève
 
-        // ESPACE ADMIN / ENSEIGNANT / PROVISEUR
-        if(page.includes("admin.html")){
+        if(window.location.pathname.includes("eleve.html")){
+if(role !== "Eleve"){
 
-            if(
-                role !== "Admin" &&
-                role !== "Enseignant" &&
-                role !== "Proviseur"
-            ){
+    window.location.href = "admin.html";
 
-                window.location.href="eleve.html";
-                return;
-
-            }
+}
 
         }
-
-
-
-        // ESPACE ÉLÈVE
-        if(page.includes("eleve.html")){
-
-            if(role !== "Eleve"){
-
-                window.location.href="admin.html";
-                return;
-
-            }
-
-        }
-
-    }
-
-    catch(error){
-
-        console.error(error);
 
     }
 

@@ -1,23 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Quiz</title>
 
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
 <header>
-
 <h1>📝 Gestion des Quiz</h1>
-
 </header>
 
 <div class="container">
@@ -26,77 +20,14 @@
 
 <h2>Créer un quiz</h2>
 
-<label>🏫 Salle</label>
+<input type="text" id="questionQuiz" placeholder="Question">
 
-<select id="salleQuiz">
+<input type="text" id="bonneReponse" placeholder="Bonne réponse">
 
-<option value="">Choisir une salle</option>
-
-<option>6e A</option>
-<option>4e</option>
-<option>3e</option>
-<option>Seconde C</option>
-<option>Première A</option>
-<option>Première C</option>
-<option>Première D</option>
-<option>Terminale A</option>
-<option>Terminale C</option>
-<option>Terminale D</option>
-
-</select>
-
-<br><br>
-
-<label>📚 Matière</label>
-
-<select id="matiereQuiz">
-
-<option value="">Choisir une matière</option>
-<option>Mathématiques</option>
-<option>Physique</option>
-<option>Chimie</option>
-<option>SVT</option>
-<option>Français</option>
-<option>Anglais</option>
-<option>Allemand</option>
-<option>Histoire-Géographie</option>
-<option>Philosophie</option>
-<option>Informatique</option>
-
-</select>
-<br><br>
-<label>🌍 Visibilité</label>
-
-<select id="visibiliteQuiz">
-
-<option value="lycee">
-🏫 Mon lycée uniquement
-</option>
-
-<option value="public">
-🌍 Tout le monde
-</option>
-</select>
-<br><br>
-<input 
-type="text" 
-id="questionQuiz" 
-placeholder="Question">
-
-<input 
-type="text" 
-id="bonneReponse" 
-placeholder="Bonne réponse">
-
-<input 
-type="text" 
-id="mauvaiseReponse" 
-placeholder="Mauvaise réponse">
+<input type="text" id="mauvaiseReponse" placeholder="Mauvaise réponse">
 
 <button onclick="publierQuiz()">
-
-📝 Publier le quiz
-
+Publier le quiz
 </button>
 
 </div>
@@ -106,13 +37,14 @@ placeholder="Mauvaise réponse">
 <h2>Liste des quiz</h2>
 
 <div id="listeQuiz">
-
 <p>Aucun quiz.</p>
+</div>
 
 </div>
-</div>
+
 </div>
 <script type="module" src="quiz.js"></script>
+</script>
 <script type="module" src="protection.js"></script>
 </body>
 </html>

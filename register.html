@@ -1,193 +1,39 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Inscription - Distance École</title>
-
+<title>Inscription</title>
 <link rel="stylesheet" href="style.css">
-
 </head>
-
-
 <body>
 
-
 <div class="container">
+  <div class="card">
+<h2>Inscription</h2>
 
-<div class="card">
+<input type="text" id="nom" placeholder="Nom complet">
 
+<input type="email" id="email" placeholder="Votre e-mail">
 
-<h2>📝 Inscription</h2>
-
-
-<input 
-type="text" 
-id="nom" 
-placeholder="Nom complet">
+<input type="password" id="password" placeholder="Votre mot de passe">
 
 
-
-<input 
-type="email" 
-id="email" 
-placeholder="Votre e-mail">
-
-
-
-<input 
-type="password" 
-id="password" 
-placeholder="Votre mot de passe">
-
-
-
-<select id="role" onchange="changerRole()">
-
-
-<option value="Eleve">
-👨‍🎓 Élève
-</option>
-
-
-<option value="Enseignant">
-👨‍🏫 Enseignant
-</option>
-
-
+<input type="text" id="classe" placeholder="Classe (élève) ou Matière (enseignant)">
+<select id="role">
+    <option value="Eleve">Élève</option>
+    <option value="Enseignant">Enseignant</option>
 </select>
-
-
-
-<!-- Partie élève -->
-
-<div id="zoneEleve">
-
-
-<select id="typeEleve">
-
-
-<option value="lycee">
-🏫 Élève d'un lycée
-</option>
-
-
-<option value="libre">
-🌍 Élève indépendant
-</option>
-
-
-</select>
-
-
-
-<input 
-type="text"
-id="codeLycee"
-placeholder="Code de votre lycée (si disponible)">
-
-
-
-<input 
-type="text"
-id="classe"
-placeholder="Classe">
-
-
-</div>
-
-
-
-
-<!-- Partie enseignant -->
-
-<div id="zoneEnseignant" style="display:none;">
-
-
-<input 
-type="text"
-id="matiere"
-placeholder="Matière enseignée">
-
-
-<input 
-type="text"
-id="classeEnseignant"
-placeholder="Classe enseignée">
-
-
-</div>
-
-
-
-
-
 <button onclick="inscription()">
-
 S'inscrire
-
 </button>
 
-
-
 <p>
-
-<a href="login.html">
-
-Retour à la connexion
-
-</a>
-
+<a href="login.html">Retour à la connexion</a>
 </p>
-
-
-
 </div>
-
 </div>
-
-
-
-
-<script>
-
-function changerRole(){
-
-
-let role = document.getElementById("role").value;
-
-
-if(role === "Eleve"){
-
-
-document.getElementById("zoneEleve").style.display="block";
-
-document.getElementById("zoneEnseignant").style.display="none";
-
-
-}else{
-
-
-document.getElementById("zoneEleve").style.display="none";
-
-document.getElementById("zoneEnseignant").style.display="block";
-
-
-}
-
-
-}
-
-</script>
-
-
 
 <script type="module" src="auth.js"></script>
-
-
 </body>
-
 </html>
